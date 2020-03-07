@@ -9,14 +9,20 @@
         port: 443,
         protocol: 'wss'
     };
+
+    // luo client yhteys
     let client = mqtt.connect(options)
     client.on('connect', () => {
         console.log('connected');
     });
+
+    // subscribe
     client.subscribe("test_topic");
     client.on('message', function (topic, payload) {
         console.log([topic, payload].join(": "))
     });
+
+    //julkaise
     client.publish("test_topic", "hello world!")
 </script>
 
